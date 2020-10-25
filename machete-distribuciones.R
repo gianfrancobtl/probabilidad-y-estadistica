@@ -1,28 +1,31 @@
 #Variables aleatorias discretas:
 
-  # Binomial
+  # Binomial: k exitos con reposicion.
   dbinom(k, size=n, prob=p) #puntual
   pbinom(k, size=n, prob=p) #acumulada
   
-  # Hipergeometrica
+  # Hipergeometrica: x exitos sin reposicion.
   dhyper(x, m, n, k) #puntual
   phyper(x, m, n, k) #acumulada
   
-  # Binomial negativa
-  dnbinom(x, size=r, prob=p) #puntual
+  # Binomial negativa:
+  dnbinom(1, size=4, prob=0.7) #puntual. 
+      # Ej: X -- Bn (4,0.7). 5 (4+1) reps. hasta 4to exito.
   pnbinom(x, size=r, prob=p) #acumulada
   
-  # Geom茅trica
+  # Geometrica: x repeticiones hasta el primer 閤ito. 
   dgeom(x, prob=p) #puntual
   pgeom(x, prob=p) #acumulada
 
   # Poisson
-  dpois(x, lambda=位 ) #puntual
-  ppois(x, lambda=位 ) #acumulada
+  dpois(x, lambda=i ) #puntual
+  ppois(x, lambda=i ) #acumulada
 
-# Variables aleatorias cont铆nuas:
+# Variables aleatorias continuas:
   
   # Uniforme
+  dunif(x, min = 0, max = 1, log = FALSE) #puntual
+  punif(q, min = 0, max = 1, lower.tail = TRUE, log.p = FALSE) #acumulada
   
   # Normal.
   dnorm(x, mean = 0, sd = 1) #puntual
@@ -30,64 +33,17 @@
   qnorm (p) #valores previos a la acumulada p.
 
   # Gamma
+  dgamma(x, shape, rate = 1, scale = 1/rate, log = FALSE) #puntual
+  pgamma(q, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, 
+         log.p = FALSE) #acumulada
   
   # Exponencial
+  dexp(x, rate = 1, log = FALSE) #puntual
+  pexp(q, rate = 1, lower.tail = TRUE, log.p = FALSE) #acumulada
+  
+  # Multinomial
+  dmultinom(c(1,4,5), size = 10, c(0.4,0.2,0.4), log = FALSE) #puntual
   
   
-# P4EJ8:
-dbinom(3, 3, 1/2) * dhyper(1, 1, 4, 4) #puntual
-
-# -----------
-# Calculo de covarianza y correlaci贸n con un ejemplo:
-tabla <- matrix (
-  c (0.13, 0.02, 0.11, 0.03, 0.00,
-     0.06, 0.01, 0.04, 0.02, 0.00,
-     0.08, 0.03, 0.24, 0.2, 0.03), nrow = 3, byrow = TRUE
-)
-
-# Varianza
-vx <- sum (c(100, 120, 140)^2*rowSums(tabla)) - (sum(c(100, 120, 140)*rowSums(tabla)))^2
-vy <- sum (c(80, 90, 100, 120, 130)^2*colSums(tabla)) - sum(c(80, 90, 100, 120, 130)*colSums((tabla)))^2
-vx
-vy
-
-# Desvio Standard
-dsx = sqrt (vx)
-dsy = sqrt (vy)
-
-# Esperanza (v.a. discreta)
-ex = sum (c(100, 120, 140) * rowSums(tabla))
-ey = sum (c(80, 90, 100, 120, 130) * colSums(tabla))
-exy = 0
-
-for (i in 1:8){
-  e <- sum(i*(dbinom(i,8,0.8)*0.1 + dbinom(i,8,0.3)*0.9))
-}
-
-
-a <- c(80, 90, 100, 120, 130)
-b <- c(100, 120, 140)
-
-for (i in 1:3) {
-  for (j in 1:5) {
-    exy <- (exy + tabla [i,j] * a[j] * b[i])
-  }
-}
-
-# Funcion para la covarianza
-covarianza <- exy - ex * ey
-
-# Correlaci贸n
-correlacion <- covarianza/(dsx*dsy)
-
-  # Suma las columnas de la tabla
-  colSums(tabla)
-  
-  # Suma las filas de la tabla
-  rowSums(tabla)
-  
-
-
-
-
+  #--#
   
