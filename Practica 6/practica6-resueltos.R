@@ -52,35 +52,30 @@ proba_pilar_dado_3def <- proba_pilar_y_3def/proba_3def
 lamparas <- read.csv("lamparas.txt", header = FALSE)
 # X = "Horas de duración de las lámparas"
 
-# a) Estimar la probabilidad de que una lampara producida por esta fabrica dure ma ́s de 30 horas.
+#Estimo la probabilidad de que una lampara producida por esta fabrica dure ma ́s de 30 horas.
 # P (x > 30)
 proba_dure_mas_30hs <- mean (lamparas$V1 > 30) # 0.3704
 
-# b) Implementar y graficar la funcio ́n de distribución emp ́ırica de este conjunto de datos.
+# Implemento y grafico la funcio ́n de distribución emp ́ırica de este conjunto de datos.
+ecdf(lamparas$V1)
+plot(ecdf(lamparas$V1)) # Ploteo un gráfico de la distribución acumulada de las lámparas.
 
-
-# c) Completar: Estos datos permiten estimar que el 90 % de las lamparas producidas por esta fa ́brica dura ma ́s de ........ horas y el 10 % dura menos de ........ horas.
-
-
-
-
+# Otra forma, más laboriosa:
 acumulada <- function(t)
 {
   # Compara el vector con el número.
   mean(lamparas[,1] <= t)
 }
 
-acumulada(5)
-acumulada(8)
-
+grilla <- seq(-5, 120, length = 1000)
 # Aplica la acumulada a cada elemento de la grilla
 resultado <- sapply(grilla, acumulada)
-
-range(datos[,1])
-grilla <- seq(-5, 120, length = 1000)
 plot(grilla,resultado)
 
-ecdf(datos[,1])
+# Estos datos permiten estimar que el 90 % de las lamparas producidas por esta fa ́brica dura 
+# ma ́s de ...2,41... horas y el 10 % dura menos de ..... 2,41...... horas.
+
+
 
 # EJERCICIO 3
 
