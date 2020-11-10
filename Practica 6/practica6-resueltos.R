@@ -4,7 +4,7 @@
 alfajores <- read.table("alfajores.txt", header = TRUE)
 
 # a) la probabilidad de que una caja provenga de la sede Quilmes.
-alfajores[,2] # Tira de 1s y 0s según fabrica.
+alfajores[,2] # Tira de 1s y 0s segun fabrica.
 proba_quilmes <- mean(alfajores$fabrica == 0)
 mean(alfajores[,2] == 0) # otra opción.
 proba_quilmes # 0.256
@@ -52,11 +52,11 @@ proba_pilar_dado_3def <- proba_pilar_y_3def/proba_3def
 lamparas <- read.csv("lamparas.txt", header = FALSE)
 # X = "Horas de duración de las lámparas"
 
-#Estimo la probabilidad de que una lampara producida por esta fabrica dure ma ́s de 30 horas.
+#Estimo la probabilidad de que una lampara producida por esta fabrica dure mas de 30 horas.
 # P (x > 30)
 proba_dure_mas_30hs <- mean (lamparas$V1 > 30) # 0.3704
 
-# Implemento y grafico la funcio ́n de distribución emp ́ırica de este conjunto de datos.
+# Implemento y grafico la funcion de distribucion empirica de este conjunto de datos.
 ecdf(lamparas$V1)
 plot(ecdf(lamparas$V1)) # Ploteo un gráfico de la distribución acumulada de las lámparas.
 
@@ -72,8 +72,8 @@ grilla <- seq(-5, 120, length = 1000)
 resultado <- sapply(grilla, acumulada)
 plot(grilla,resultado)
 
-# Estos datos permiten estimar que el 90 % de las lamparas producidas por esta fa ́brica dura 
-# ma ́s de ...2,41... horas y el 10 % dura menos de ..... 2,41...... horas.
+# Estos datos permiten estimar que el 90 % de las lamparas producidas por esta fabrica dura 
+# mas de 2,41 horas y el 10 % dura menos de 2,41 horas.
 
 
 
@@ -97,3 +97,61 @@ plot(grilla,resultado)
 
 # EJERCICIO 9
 
+
+  #--#
+
+# EJERCICIO DE LA CLASE PR�CTICA:
+# Genero 6 muestras aleatorias seg�n lo pedido.
+a <- runif(1000)
+b <- replicate(1000, mean(runif(2)))
+c <- replicate(1000, mean(runif(5)))
+d <- replicate(1000, mean(runif(30)))
+e <- replicate(1000, mean(runif(500)))
+f <- replicate(1000, mean(runif(1200)))
+
+# Veo las medias.
+mean(a)
+mean(b)
+mean(c)
+mean(d)
+mean(e)
+mean(f)
+
+# Veo las varianzas.
+var(a)
+var(b)
+var(c)
+var(d)
+var(e)
+var(f)
+
+# par(mfrow=c(1,1))
+
+# Veo los histogramas.
+hist(a, prob = TRUE)
+hist(b, prob = TRUE)
+curve(dnorm(x, mean(b), sd(b)), add = TRUE)
+hist(c, prob = TRUE)
+hist(d, prob = TRUE)
+hist(e, prob = TRUE)
+hist(f, prob = TRUE)
+
+# Modelo los datos en forma de boxplots.
+boxplot(a, b, c, d, e, f, names= c("a","b","c","d","e","f"))
+boxplot(a, b, names = c("a","b"))
+
+# Comparo la distribuci�n normal ideal con las muestras tomadas para comprobar 
+# experimentalmente el Teorema Central del L�mite (TCL).
+# Se ve como, a medida que se realizan m�s muestras, la correlaci�n es mayor.
+qqnorm(a)
+qqline(a, col="red", lwd=3)
+qqnorm(b)
+qqline(b, col="red", lwd=3)
+qqnorm(c)
+qqline(c, col="red", lwd=3)
+qqnorm(d)
+qqline(d, col="red", lwd=3)
+qqnorm(e)
+qqline(e, col="red", lwd=3)
+qqnorm(f)
+qqline(f, col="red", lwd=3)

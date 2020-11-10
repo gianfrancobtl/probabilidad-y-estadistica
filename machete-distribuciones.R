@@ -1,3 +1,6 @@
+# Machete de distribuciones. En algunos casos, se ven ejemplos que facilitan el 
+# entendimiento de la formula.
+
 #Variables aleatorias discretas:
 
   # Binomial: k exitos con reposicion.
@@ -43,6 +46,16 @@
   
   # Multinomial
   dmultinom(c(1,4,5), size = 10, c(0.4,0.2,0.4), log = FALSE) #puntual
+  
+  # t-student
+  dt(x, df, ncp, log = FALSE)
+  pt(2.35, 3, lower.tail = TRUE, log.p = FALSE)
+  qt(0.05, 3, lower.tail = TRUE, log.p = FALSE)
+  
+  # Chi-cuadrado
+  dchisq(x, df, ncp = 0, log = FALSE)
+  pchisq(q, df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+  qchisq(0.95, 3, ncp = 0, lower.tail = TRUE, log.p = FALSE)
   
   
   #--#
