@@ -80,10 +80,40 @@ plot(grilla,resultado)
 # EJERCICIO 3
 
 
+
 # EJERCICIO 4
 
 
 # EJERCICIO 5
+# Ingresos de 1000 trabajadores en miles de pesos.
+ingresos <- read.table("ingresos.txt")
+
+# a)
+min_ingresos <- min(ingresos$V1)
+mean(ingresos$V1 == min_ingresos)
+
+# b)
+quantile(ingresos$V1, 0.9)
+
+# c) 
+mean(ingresos$V1)
+median(ingresos$V1)
+mean(ingresos$V1, 0.1)
+
+# d)
+sd(ingresos$V1)
+IQR(ingresos$V1)
+
+# e)
+hist(ingresos$V1)
+boxplot(ingresos$V1)
+# La muestra presenta datos muy concentrados en los primeros valores,
+# los cuales pierden concentración a medida que aumentan.
+
+# f)
+qqnorm(ingresos$V1)
+# Con este grafico, se ve que la muestra no presenta relacion alguna con la normal.
+
 
 
 # EJERCICIO 6
