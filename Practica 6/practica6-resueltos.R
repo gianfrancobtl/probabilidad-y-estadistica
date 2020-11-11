@@ -96,6 +96,20 @@ plot(grilla,resultado)
 
 
 # EJERCICIO 9
+library(readr) # facilita el parseo de los datos.
+departamentos <- read_delim("departamentos-en-venta-2016.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+
+# a) Grafico de dólares vs. metros cuadrados.
+with(departamentos, plot(M2, DOLARES))
+
+# b) Correlacion entre precio en dolares y m2
+cor(departamentos$M2, departamentos$DOLARES)
+
+# c) Linea de regresión. Predicción de precio en dolares segun m2.
+ajuste <- lm(DOLARES~M2, data = departamentos)
+
+# d) Superposicion de c) sobre a).
+abline(ajuste$coefficients)
 
 
   #--#
