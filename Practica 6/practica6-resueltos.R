@@ -87,13 +87,63 @@ plot(grilla,resultado)
 
 
 # EJERCICIO 6
+normal_25 <- rnorm(25)
+normal_50 <- rnorm(50)
+normal_100 <- rnorm(100)
 
+qqnorm(normal_25)
+qqnorm(normal_50)
+qqnorm(normal_100)
+
+# b) Idem con G(5,1/2)
+qqnorm(rgamma(100, 5, 1/2))
+
+# c)
+qqnorm(rnorm(100)/ runif(100))
+
+# d)
+qqnorm(runif(1000))
+
+# e)
+qqnorm(rexp(1000))
+
+# f)
+# Si, el qqnorm basado en una muestra aleatoria normal presenta una función
+# lineal que predice muy bien mientras que en el resto no sucede.
 
 # EJERCICIO 7
+n = 1000
+datos_random <- runif (n)
+
+# a) Implemento una función que remplaza cada valor por la sumatoria de (xi-c)^2
+l2 = function(c) {
+  sum((datos_random-c)^2)
+}
+
+datos_l2 = sapply(datos_random,l2)
+plot(datos_random, datos_l2)
+
+median(datos_random)
+
+# La media es 0.4561 y la mediana 0.4833. Al realizar el grafico de l2, 
+# su mínimo se encuentra cercano a estos valores.
+
+# b) Implemento una función que remplaza cada valor por la sumatoria de abs(xi-c)
+l1 = function (c){
+  sum(abs(datos_random-c))
+}
+
+datos_l1 = sapply(datos_random,l1)
+plot(datos_random, datos_l1)
+
+# Se puede ver que los gráficos de ambas funciones son muy similares.
+# A mayor cantidad de muestras, mayor similitud.
+# Conclusion: tanto el ECM como el EAM son dos buenos predictores de error.
+
 
 
 # EJERCICIO 8
-
+  # -- #
 
 # EJERCICIO 9
 library(readr) # facilita el parseo de los datos.
